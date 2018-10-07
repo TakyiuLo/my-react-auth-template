@@ -4,5 +4,4 @@
 - using material `Navbar`
 - using material `Card`/`Form`
 - Adjust `Link` using `NavLink` from `mdbreact`
-- Adjusted `body` in app.scss because putting it in index.scss doesn't work
-- 
+- Adjusted `body` style in app.scss because putting it in index.scss doesn't work
