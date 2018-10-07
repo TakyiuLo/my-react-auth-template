@@ -83,7 +83,12 @@ class Header extends Component {
       <React.Fragment>
         <NavItem>
           <NavLink className="HomeLink" to="/">
-            <Fa icon="home" size="xs" />
+            <Fa
+              icon="home"
+              size="xs"
+              className={`${isWideEnough ? '' : 'mr-2'}`}
+            />
+            {isWideEnough ? '' : 'Home'}
           </NavLink>
         </NavItem>
       </React.Fragment>

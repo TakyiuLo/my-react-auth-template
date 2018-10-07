@@ -93,7 +93,7 @@ class SignIn extends Component {
                   value={password}
                   label="Type Your password"
                   type="password"
-                  size="sm"/>
+                  size="sm" />
                 <Row className="d-flex align-items-center mb-4">
                   <Col md="12" className="text-center">
                     <Button 

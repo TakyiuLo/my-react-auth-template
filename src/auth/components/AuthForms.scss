@@ -28,6 +28,11 @@
     & button[type='submit'] {
       background: $primary-color !important;
       color: $text-auto !important;
+      transition: all .3s ease-out;
+      &:hover {
+        box-shadow: 0 10px 20px #ccc;
+        transform: translate(0, -1px);
+      }
     }
   }
 }

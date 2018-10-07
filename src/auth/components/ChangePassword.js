@@ -5,6 +5,20 @@ import { handleErrors, changePassword } from '../api'
 import messages from '../messages'
 import apiUrl from '../../apiConfig'
 
+import './AuthForms.scss'
+import {
+  Container,
+  Row,
+  Col,
+  Input,
+  Button,
+  Fa,
+  Card,
+  CardBody,
+  ModalFooter,
+  Animation
+} from 'mdbreact'
+
 class ChangePassword extends Component {
   constructor () {
     super()
@@ -41,29 +55,43 @@ class ChangePassword extends Component {
     const { oldPassword, newPassword } = this.state
 
     return (
-      <form className='auth-form' onSubmit={this.changePassword}>
-        <h3>Change Password</h3>
-
-        <label htmlFor="oldpw">Old Password</label>
-        <input
-          required
-          name="oldPassword"
-          value={oldPassword}
-          type="password"
-          placeholder="Old Password"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="newPassword">New Password</label>
-        <input
-          required
-          name="newPassword"
-          value={newPassword}
-          type="password"
-          placeholder="New Password"
-          onChange={this.handleChange}
-        />
-        <button type="submit">Change Password</button>
-      </form>
+      <Row className="auth-form">
+        <Col md="12">
+          <Card>
+            <CardBody>
+              <div className="blue-grey-text text-center">
+                <h3 className="mb-5">
+                  <strong>Change Password</strong>
+                </h3>
+              </div>
+              <Input
+                name="newPassword"
+                onChange={this.handleChange}
+                value={oldPassword}
+                label="Type Your Old Password"
+                type="password"
+                size="sm"/>
+              <Input
+                name="password"
+                onChange={this.handleChange}
+                value={newPassword}
+                label="Type Your New Password"
+                type="password"
+                size="sm"/>
+              <Row className="d-flex align-items-center mb-4">
+                <Col md="12" className="text-center">
+                  <Button 
+                    type="submit"
+                    onClick={this.changePassword}
+                    className="btn btn-primary btn-block btn-rounded z-depth-1">
+                    Change
+                  </Button>
+                </Col>
+              </Row>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
     )
   }
 }
