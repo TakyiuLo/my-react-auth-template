@@ -47,8 +47,6 @@ class SignIn extends Component {
     const { email, password } = this.state
     const { flash, history, setUser } = this.props
 
-    this.clearInputs()
-
     signIn(this.state)
       .then(res => res.ok ? res : new Error())
       .then(res => res.json())

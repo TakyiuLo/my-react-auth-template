@@ -16,7 +16,10 @@
       }
     }
     .DropdownMenu {
-      
+      background: $primary-color;
+      & .dropdown-item:hover {
+        background: $sub-color;
+      }
     }
   }
 }

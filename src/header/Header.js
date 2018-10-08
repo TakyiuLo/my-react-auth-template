@@ -14,9 +14,10 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  Fa
+  Fa,
+  MenuItemLink
 } from 'mdbreact'
-
+import { LinkContainer } from 'react-router-bootstrap'
 import VisibilitySensor from 'react-visibility-sensor'
 
 class Header extends Component {
@@ -24,7 +25,6 @@ class Header extends Component {
     super(props)
 
     this.state = {
-      user: props.user,
       collapse: false,
       isWideEnough: false
     }
@@ -37,9 +37,19 @@ class Header extends Component {
   visibleChange = isVisible => {
     this.setState({ isWideEnough: !isVisible })
   }
-
+  componentWillUpdate(prevProps, prevState) {
+    // only update chart if the data has changed
+    if (prevProps.user !== this.props.user) {
+      this.setState({
+        user: this.props.user
+      })
+      console.log('new user')
+    }
+  }
   render() {
-    const { user, collapse, isWideEnough } = this.state
+    const { collapse, isWideEnough } = this.state
+    const { user } = this.props
+    
     const authenticatedOptions = (
       <React.Fragment>
         <NavItem>
@@ -47,14 +57,18 @@ class Header extends Component {
             <DropdownToggle nav caret>
               <Fa icon="cog" size="xs" />
             </DropdownToggle>
-            <DropdownMenu right={isWideEnough}>
-              <DropdownItem to="/change-password">
-                Change Password
-                <Fa className="ml-2" icon="exchange" size="xs" />
+            <DropdownMenu className="DropdownMenu" right={isWideEnough}>
+              <DropdownItem>
+                <NavLink to="/change-password">
+                  Change Password
+                  <Fa className="ml-2" icon="exchange" size="xs" />
+                </NavLink>
               </DropdownItem>
-              <DropdownItem to="/sign-out">
-                Sign Out
-                <Fa className="ml-2" icon="sign-out" size="xs" />
+              <DropdownItem >
+                <NavLink to="/sign-out">
+                  Sign Out
+                  <Fa className="ml-2" icon="sign-out" size="xs" />
+                </NavLink>
               </DropdownItem>
             </DropdownMenu>
           </Dropdown>
@@ -106,7 +120,7 @@ class Header extends Component {
           <Collapse isOpen={collapse} navbar>
             <NavbarNav left>{alwaysOptions}</NavbarNav>
             <NavbarNav right>
-              {user && <span>Welcome, {user.email}</span>}
+              {user && <NavItem><NavLink to='/'>Welcome, {user.email}</NavLink></NavItem>}
               {user ? authenticatedOptions : unauthenticatedOptions}
             </NavbarNav>
           </Collapse>

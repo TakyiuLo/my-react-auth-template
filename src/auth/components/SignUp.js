@@ -42,8 +42,6 @@ class SignUp extends Component {
     const {email, password, passwordConfirmation} = this.state
     const {flash, history, setUser} = this.props
     
-    this.clearInputs()
-    
     signUp(this.state)
       .then(handleErrors)
       .then(() => signIn(this.state))

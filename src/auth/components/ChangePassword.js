@@ -42,8 +42,6 @@ class ChangePassword extends Component {
     const { oldPassword, newPassword } = this.state
     const { flash, history, user } = this.props
 
-    this.clearInputs()
-
     changePassword(this.state, user)
       .then(handleErrors)
       .then(() => flash(messages.changePasswordSuccess, 'flash-success'))
@@ -65,14 +63,14 @@ class ChangePassword extends Component {
                 </h3>
               </div>
               <Input
-                name="newPassword"
+                name="oldPassword"
                 onChange={this.handleChange}
-                value={oldPassword}
                 label="Type Your Old Password"
+                value={oldPassword}
                 type="password"
                 size="sm"/>
               <Input
-                name="password"
+                name="newPassword"
                 onChange={this.handleChange}
                 value={newPassword}
                 label="Type Your New Password"
